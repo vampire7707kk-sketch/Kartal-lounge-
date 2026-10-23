@@ -1,0 +1,2 @@
+// مقادیر را از Firebase Console > Project settings > General > Your apps بردارید.
+export const firebaseConfig = {apiKey:"PASTE_API_KEY",authDomain:"kartal-lounge.firebaseapp.com",projectId:"kartal-lounge",storageBucket:"kartal-lounge.firebasestorage.app",messagingSenderId:"PASTE_SENDER_ID",appId:"PASTE_APP_ID"};
