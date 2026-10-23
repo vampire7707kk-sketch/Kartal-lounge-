@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function signedIn(){return request.auth != null;}
+  function manager(){return signedIn() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'manager';}
+  match /users/{uid} {
+   allow read: if signedIn() && (request.auth.uid == uid || manager());
+   allow create, update, delete: if false;
+  }
+  match /tasks/{taskId} {
+   allow read: if signedIn();
+   allow create, update, delete: if manager();
+  }
+ }
+}
